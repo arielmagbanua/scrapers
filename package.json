@@ -1,0 +1,23 @@
+{
+  "name": "scrapers",
+  "version": "0.0.1",
+  "description": "A collection of web scrapers.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arielmagbanua/scrapers.git"
+  },
+  "keywords": [
+    "scraper",
+    "scrapers"
+  ],
+  "author": "Ariel Magbanua <ariel@arielmagbanua.com> (https://arielmagbanua.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/arielmagbanua/scrapers/issues"
+  },
+  "homepage": "https://github.com/arielmagbanua/scrapers#readme"
+}
