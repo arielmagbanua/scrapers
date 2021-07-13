@@ -5,7 +5,7 @@ import { PDFOptions, PaperFormat, launch } from 'puppeteer';
  *
  * https://lawphil.net/
  */
-export default class LawPhil {
+export default class Index {
   /**
    * Constructor
    *
@@ -17,9 +17,9 @@ export default class LawPhil {
    * Sets the url of the page to scrape.
    *
    * @param {string} url - The url of the page to scrape.
-   * @return {LawPhil}
+   * @return {Index}
    */
-  pageUrl(url: string): LawPhil {
+  pageUrl(url: string): Index {
     this.url = url;
     return this;
   }
