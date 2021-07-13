@@ -3,14 +3,35 @@
 	"parser": "@typescript-eslint/parser",
 	"plugins": [
 		"@typescript-eslint",
-		"airbnb"
+		"prettier"
 	],
 	"extends": [
+		"google",
+		"prettier",
 		"eslint:recommended",
 		"plugin:@typescript-eslint/eslint-recommended",
 		"plugin:@typescript-eslint/recommended"
 	],
+	"parserOptions": {
+		"ecmaVersion": 2015,
+		"sourceType": "module"
+	},
+	"env": {
+		"es6": true,
+		"node": true
+	},
 	"rules": {
-		"import/no-unresolved": 0
+		"import/no-unresolved": 0,
+		"prettier/prettier": [
+			"error",
+			{
+				"printWidth": 100,
+				"singleQuote": true,
+				"trailingComma": "none"
+			}
+		],
+		"object-curly-spacing": ["error", "always"],
+		"quotes": ["error", "single"],
+		"indent": ["error", 2]
 	}
 }
