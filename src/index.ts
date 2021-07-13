@@ -1,3 +1,3 @@
-import { getPageContent } from './lawphil';
+import getPageContent from './lawphil/use-cases/getPageContent';
 
 export { getPageContent };

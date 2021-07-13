@@ -5,7 +5,7 @@ import { PDFOptions, PaperFormat, launch } from 'puppeteer';
  *
  * https://lawphil.net/
  */
-class LawPhil {
+export default class LawPhil {
   /**
    * Constructor
    *
@@ -72,8 +72,6 @@ class LawPhil {
 
     await page.setContent(dom);
 
-    // TODO: Create the filename base on the url
-
     const options: PDFOptions = {
       path: savePath,
       format: format
@@ -82,8 +80,3 @@ class LawPhil {
     return await page.pdf(options);
   }
 }
-
-// use cases
-const getPageContent = async (url: string): Promise<Buffer | null> => await new LawPhil(url).pdf();
-
-export { LawPhil, getPageContent };
