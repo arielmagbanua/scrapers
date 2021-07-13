@@ -5,7 +5,7 @@ import { PDFOptions, PaperFormat, launch } from 'puppeteer';
  *
  * https://lawphil.net/
  */
-export default class Index {
+class LawPhil {
   /**
    * Constructor
    *
@@ -17,9 +17,9 @@ export default class Index {
    * Sets the url of the page to scrape.
    *
    * @param {string} url - The url of the page to scrape.
-   * @return {Index}
+   * @return {LawPhil}
    */
-  pageUrl(url: string): Index {
+  pageUrl(url: string): LawPhil {
     this.url = url;
     return this;
   }
@@ -46,17 +46,30 @@ export default class Index {
     const page = await browser.newPage();
 
     // go to the url
-    await page.goto(this.url, { waitUntil: 'networkidle0' });
+    await page.goto(this.url);
 
-    // wait for the cookie button to show
-    await page.waitForSelector('button#but ', {
-      visible: true
+    const dom = await page.$eval('center > table > tbody > tr:last-child', (element: Element) => {
+      // remove all back links
+      const block = element.querySelectorAll('a[href$="javascript:history.back(1)"]');
+
+      if (block) {
+        block.forEach((e: Element) => {
+          if (e.parentNode) {
+            e.parentNode.removeChild(e);
+          }
+        });
+      }
+
+      // wrap the content with proper table
+      return `
+        <table>
+          <tbody>
+            <tr>${element.innerHTML}</tr>
+          </tbody>
+        </table>
+      `;
     });
 
-    // click the ok button
-    await page.click('button#but');
-
-    const dom = await page.$eval('center > table > tbody > tr:last-child', (e) => e.innerHTML);
     await page.setContent(dom);
 
     // TODO: Create the filename base on the url
@@ -69,3 +82,8 @@ export default class Index {
     return await page.pdf(options);
   }
 }
+
+// use cases
+const getPageContent = async (url: string): Promise<Buffer | null> => await new LawPhil(url).pdf();
+
+export { LawPhil, getPageContent };
