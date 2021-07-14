@@ -1,6 +1,6 @@
 {
   "name": "scrapers",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A collection of web scrapers.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -36,5 +36,7 @@
   },
   "dependencies": {
     "puppeteer": "^10.1.0"
-  }
+  },
+  "prepublishOnly": "npm run build && cp -r ./dist/* . && rm -rf ./dist",
+  "postpublish": "git clean -fd"
 }
