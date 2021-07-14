@@ -1,9 +1,9 @@
 {
   "name": "scrapers",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "A collection of web scrapers.",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -36,7 +36,5 @@
   },
   "dependencies": {
     "puppeteer": "^10.1.0"
-  },
-  "prepublishOnly": "npm run build && cp -r ./dist/* . && rm -rf ./dist",
-  "postpublish": "git clean -fd"
+  }
 }
